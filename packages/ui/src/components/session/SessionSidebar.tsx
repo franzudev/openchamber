@@ -32,6 +32,7 @@ import {
   type ProjectRef,
 } from '@/lib/worktrees/worktreeManager';
 import { resolveProjectForCreatedSession, resolveProjectsForWorktreeChange } from '@/lib/worktrees/worktreeTopologyRefresh';
+import { startWorktreeSessionHydration } from '@/lib/worktrees/worktreeSessionHydration';
 import type { WorktreeMetadata } from '@/types/worktree';
 import { checkIsGitRepository } from '@/lib/gitApi';
 import { useSessionDisplayStore } from '@/stores/useSessionDisplayStore';
@@ -54,6 +55,8 @@ import {
   type StartSessionWorktreeMenuLoadArgs,
 } from './sidebar/sessionWorktreeMenu';
 import { resolveProjectRef } from '@/lib/worktreeSessionCreator';
+
+startWorktreeSessionHydration();
 
 const PROJECT_ACTIVE_SESSION_STORAGE_KEY = 'oc.sessions.activeSessionByProject';
 const activeSessionByProjectSchema = z.record(z.string(), z.string().min(1).catch(''));
